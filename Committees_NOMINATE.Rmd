@@ -1,0 +1,1316 @@
+---
+title: "Armed Services Committees NOMINATE Visualization"
+output: github_document
+---
+
+## Armed Services Committee Rosters
+# The membership for the House and Senate Armed Services Committees (including the House Committee on National Security in the 104th and 105th Congresses) was derived from the committees' reports of activities.
+# Committees published these reports on varying schedules, sometimes long after the Congress to which they referred. The reports were unavailable for some Congresses, and I assembled membership information from other sources, including C-SPAN hearings, which often list the committee membership. The C-SPAN website lists the membership for the committees by Congress but without amplifying data such as information on members who left or joined the committee during the Congress.
+# These lists include ALL members of the committee during that Congress, including those who left the committee or joined late. There are a few exceptions, for instance in the 102nd Congress, I included Mary Bono but not Sonny Bono because he died at the beginning of the session and played no part in the hearings covered by this project.
+# There are several issues with NOMINATE scores, but they are the most readily available and consistent measure of ideology.
+# 1. NOMINATE scores are consistent for a single member across their membership in a legislative body, so they do not capture ideological evolution. Therefore, these measures may under- or overstate a member's ideological extremism at any given point. 
+# 2. The NOMINATE dimensions do not directly address military and national security issues. It is possible that there are outliers who score extremely conservative on the economic or racial scale by are liberal on national security issues. However, that seems less likely during the period of this study--for instance Democrats like Joe Lieberman who were hawkish and conservative on national security were also among the most conservative members of their party on other issues. 
+
+## Code
+
+# Load required libraries
+
+```{r, echo = FALSE}
+library(tidyverse)
+library(dplyr)
+library(readr)
+library(haven)
+library(here)           # sets directory path
+library(ggplot2)        # plotting functionality including attr for labels
+library(knitr)          # enables running code from RMD file
+library(here)           # could not get this to work with Proton Drive
+library(RColorBrewer)   # RColorBrewer provides color palettes for plots
+```
+
+# Set home folder
+```{r, echo = FALSE}
+# here() starts at /Library/CloudStorage/ProtonDrive-james.vizzard@proton.me-folder/James/201801-20YYMM_PhD/P_Dissertation
+i_am("/Documents/Dissertation/")
+```
+
+# Load data and create subsets by chamber by congress
+```{r, echo = FALSE}
+# using the working csv files constructed from the base VoteView data with the addition of armed services committee membership, create data frames for each chamber and armed services committee in each congress.
+
+house <- read_csv("NOMINATE_House_202506_WORKING.csv")
+
+# set labels
+attr(house$congress, "label") <- "Congress"
+attr(house$chamber, "label") <- "Chamber"
+attr(house$icpsr, "label") <- "ICPSR Identifier"
+attr(house$state_icpsr, "label") <- "ICPSR State Identifier"
+attr(house$district_code, "label") <- "District Code"
+attr(house$state_abbrev, "label") <- "State"
+attr(house$party_code, "label") <- "Party Code"
+attr(house$party, "label") <- "Party"
+attr(house$occupancy, "label") <- "ICPSR Occupancy Code"
+attr(house$last_means, "label") <- "Means of Attaining Office"
+attr(house$bioname, "label") <- "Member Name"
+attr(house$bioguide_id, "label") <- "Biographical Directory of Congress ID"
+attr(house$born, "label") <- "Date of Birth"
+attr(house$died, "label") <- "Date of Death"
+attr(house$nominate_dim1, "label") <- "NOMINATE Dim1"
+attr(house$nominate_dim2, "label") <- "NOMINATE Dim2"
+attr(house$nominate_log_likelihood, "label") <- "Log-Likelihood of the NOMINATE Estimate"
+attr(house$nominate_geo_mean_probability, "label") <- "Geometric Mean Probability" 
+attr(house$nominate_number_of_votes, "label") <- "Votes Cast by Member in Given Congress"
+attr(house$nokken_poole_dim1, "label") <- "Nokken-Poole First Dimension Estimate"
+attr(house$nokken_poole_dim2, "label") <- "Nokken-Poole Second Dimension Estimate"
+attr(house$hasc, "label") <- "HASC Member"
+
+house102 <- subset( x = house,           # data frame is house
+              subset = congress == 102   # keep only 102nd Congress
+                  )
+hasc102 <- subset( x = house102,         # data frame is house102
+                   subset = hasc == 1.   # keep only HASC members
+                   )
+house103 <- subset( x = house,           # repeat for 103-114 Congresses
+              subset = congress == 103   
+                  )
+hasc103 <- subset( x = house103,
+                   subset = hasc == 1
+                   )
+house104 <- subset( x = house,          
+              subset = congress == 104   
+                  )
+hasc104 <- subset( x = house104,
+                   subset = hasc == 1
+                   )
+house105 <- subset( x = house,           
+              subset = congress == 105   
+                  )
+hasc105 <- subset( x = house105,
+                   subset = hasc == 1
+                   )
+house106 <- subset( x = house,          
+              subset = congress == 106   
+                  )
+hasc106 <- subset( x = house106,
+                   subset = hasc == 1
+                   )
+house107 <- subset( x = house,         
+              subset = congress == 107  
+                  )
+hasc107 <- subset( x = house107,
+                   subset = hasc == 1
+                   )
+house108 <- subset( x = house,          
+              subset = congress == 108   
+                  )
+hasc108 <- subset( x = house108,
+                   subset = hasc == 1
+                   )
+house109 <- subset( x = house,           
+              subset = congress == 109   
+                  )
+hasc109 <- subset( x = house109,
+                   subset = hasc == 1
+                   )
+house110 <- subset( x = house,           
+              subset = congress == 110   
+                  )
+hasc110 <- subset( x = house110,
+                   subset = hasc == 1
+                   )
+house111 <- subset( x = house,           
+              subset = congress == 111   
+                  )
+hasc111 <- subset( x = house111,
+                   subset = hasc == 1
+                   )
+house112 <- subset( x = house,           
+              subset = congress == 112   
+                  )
+hasc112 <- subset( x = house112,
+                   subset = hasc == 1
+                   )
+house113 <- subset( x = house,           
+              subset = congress == 113   
+                  )
+hasc113 <- subset( x = house113,
+                   subset = hasc == 1
+                   )
+house114 <- subset( x = house,           
+              subset = congress == 114   
+                  )
+hasc114 <- subset( x = house114,
+                   subset = hasc == 1
+                   )
+```
+
+```{r}
+senate <- read_csv("NOMINATE_Senate_202506_WORKING.csv")
+
+# set labels
+attr(senate$congress, "label") <- "Congress"
+attr(senate$chamber, "label") <- "Chamber"
+attr(senate$icpsr, "label") <- "ICPSR Identifier"
+attr(senate$state_icpsr, "label") <- "ICPSR State Identifier"
+attr(senate$district_code, "label") <- "District Code"
+attr(senate$state_abbrev, "label") <- "State"
+attr(senate$party_code, "label") <- "Party Code"
+attr(senate$party, "label") <- "Party"
+attr(senate$occupancy, "label") <- "ICPSR Occupancy Code"
+attr(senate$last_means, "label") <- "Means of Attaining Office"
+attr(senate$bioname, "label") <- "Member Name"
+attr(senate$bioguide_id, "label") <- "Biographical Directory of Congress ID"
+attr(senate$born, "label") <- "Date of Birth"
+attr(senate$died, "label") <- "Date of Death"
+attr(senate$nominate_dim1, "label") <- "NOMINATE Dim1"
+attr(senate$nominate_dim2, "label") <- "NOMINATE Dim2"
+attr(senate$nominate_log_likelihood, "label") <- "Log-Likelihood of the NOMINATE Estimate"
+attr(senate$nominate_geo_mean_probability, "label") <- "Geometric Mean Probability" 
+attr(senate$nominate_number_of_votes, "label") <- "Votes Cast by Member in Given Congress"
+attr(senate$nokken_poole_dim1, "label") <- "Nokken-Poole First Dimension Estimate"
+attr(senate$nokken_poole_dim2, "label") <- "Nokken-Poole Second Dimension Estimate"
+attr(senate$sasc, "label") <- "SASC Member"
+
+sen102 <- subset( x = senate,            # data frame is senate
+              subset = congress == 102   # keep only 102nd Congress
+                  )
+sasc102 <- subset( x = sen102,           # data frame is sen102
+                   subset = sasc == 1.   # keep only SASC members
+                   )
+sen103 <- subset( x = senate,           # repeat for 103-114 Congresses
+              subset = congress == 103   
+                  )
+sasc103 <- subset( x = sen103,
+                   subset = sasc == 1
+                   )
+sen104 <- subset( x = senate,           
+              subset = congress == 104   
+                  )
+sasc104 <- subset( x = sen104,
+                   subset = sasc == 1
+                   )
+sen105 <- subset( x = senate,           
+              subset = congress == 105   
+                  )
+sasc105 <- subset( x = sen105,
+                   subset = sasc == 1
+                   )
+sen106 <- subset( x = senate,           
+              subset = congress == 106   
+                  )
+sasc106 <- subset( x = sen106,
+                   subset = sasc == 1
+                   )
+sen107 <- subset( x = senate,           
+              subset = congress == 107   
+                  )
+sasc107 <- subset( x = sen107,
+                   subset = sasc == 1
+                   )
+sen108 <- subset( x = senate,           
+              subset = congress == 108   
+                  )
+sasc108 <- subset( x = sen108,
+                   subset = sasc == 1
+                   )
+sen109 <- subset( x = senate,           
+              subset = congress == 109   
+                  )
+sasc109 <- subset( x = sen109,
+                   subset = sasc == 1
+                   )
+sen110 <- subset( x = senate,           
+              subset = congress == 110   
+                  )
+sasc110 <- subset( x = sen110,
+                   subset = sasc == 1
+                   )
+sen111 <- subset( x = senate,           
+              subset = congress == 111   
+                  )
+sasc111 <- subset( x = sen111,
+                   subset = sasc == 1
+                   )
+sen112 <- subset( x = senate,           
+              subset = congress == 112   
+                  )
+sasc112 <- subset( x = sen112,
+                   subset = sasc == 1
+                   )
+sen113 <- subset( x = senate,           
+              subset = congress == 113   
+                  )
+sasc113 <- subset( x = sen113,
+                   subset = sasc == 1
+                   )
+sen114 <- subset( x = senate,           
+              subset = congress == 114   
+                  )
+sasc114 <- subset( x = sen114,
+                   subset = sasc == 1
+                   )
+```
+
+## Plots of committee and chamber NOMINATE scores
+```{r fig.width=6, fig.height=4, echo = FALSE}
+
+# plots of HASC and the House of Representatives in 102nd Congress
+
+# set default colors
+# set colors for plots
+party_colors <- c("blue", "red", "purple")
+
+# scatter plot
+phasc102 <- ggplot(data = hasc102,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc102 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_102.png")
+
+# boxplot HASC
+bhasc102 <- ggplot(data = hasc102,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc102 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_102.png")
+
+# Scatterplot House of Representatives
+phr102 <- ggplot(data = house102,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2))
+phr102 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_102.png")
+
+# 103rd Congress
+# scatterplot HASC
+phasc103 <- ggplot(data = hasc103,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc103 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 103rd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_103.png")
+
+# boxplot HASC
+bhasc103 <- ggplot(data = hasc103,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc103 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 103rd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_103.png")
+
+# Scatterplot House of Representatives in
+phr103 <- ggplot(data = house103,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2))
+phr103 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 103rd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_103.png")
+
+# 104th Congress
+# scatterplot HASC
+phasc104 <- ggplot(data = hasc104,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc104 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 104th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_104.png")
+
+# boxplot HASC
+bhasc104 <- ggplot(data = hasc104,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc104 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 104th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_104.png")
+
+# Scatterplot House of Representatives
+phr104 <- ggplot(data = house104,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr104 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 104th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_104.png")
+
+# 105th Congress
+# scatterplot HASC
+phasc105 <- ggplot(data = hasc105,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc105 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 105th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_105.png")
+
+# boxplot HASC
+bhasc105 <- ggplot(data = hasc105,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc105 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 105th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_105.png")
+
+# Scatterplot House of Representatives
+phr105 <- ggplot(data = house105,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr105 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 105th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_105.png")
+
+# 106th Congress
+# scatterplot HASC
+phasc106 <- ggplot(data = hasc106,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc106 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 106th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_106.png")
+
+# boxplot HASC
+bhasc106 <- ggplot(data = hasc106,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc106 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 106th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_106.png")
+
+# Scatterplot House of Representatives
+phr106 <- ggplot(data = house106,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr106 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 106th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_106.png")
+
+# 107th Congress
+# scatterplot HASC
+phasc107 <- ggplot(data = hasc107,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc107 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 107th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_107.png")
+
+# boxplot HASC
+bhasc107 <- ggplot(data = hasc107,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc107 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 107th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_107.png")
+
+# Scatterplot House of Representatives
+phr107 <- ggplot(data = house107,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr107 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 107th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_107.png")
+
+# 108th Congress
+# scatterplot HASC
+phasc108 <- ggplot(data = hasc108,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc108 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 108th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_108.png")
+
+# boxplot HASC
+bhasc108 <- ggplot(data = hasc108,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc108 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 108th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_108.png")
+
+# Scatterplot House of Representatives
+phr108 <- ggplot(data = house108,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr108 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 108th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_108.png")
+
+# 109th Congress
+# scatterplot HASC
+phasc109 <- ggplot(data = hasc109,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc109 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 109th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_109.png")
+
+# boxplot HASC
+bhasc109 <- ggplot(data = hasc109,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc109 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 109th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_109.png")
+
+# Scatterplot of House of Representatives
+phr109 <- ggplot(data = house109,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr109 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 109th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_109.png")
+
+# 110th Congress
+# scatterplot HASC
+phasc110 <- ggplot(data = hasc110,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc110 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 110th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_110.png")
+
+# boxplot HASC
+bhasc110 <- ggplot(data = hasc110,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc110 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 110th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_110.png")
+
+# Scatterplot House of Representatives
+phr110 <- ggplot(data = house110,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr110 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 110th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_110.png")
+
+# 111th Congress
+# scatterplot HASC
+phasc111 <- ggplot(data = hasc111,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc111 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 111th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_111.png")
+
+# boxplot HASC
+bhasc111 <- ggplot(data = hasc111,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc111 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 111th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_111.png")
+
+# Scatterplot House of Representatives
+phr111 <- ggplot(data = house111,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr111 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 111th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_111.png")
+
+# 112th Congress
+# scatterplot HASC
+phasc112 <- ggplot(data = hasc112,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc112 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 112th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_112.png")
+
+# boxplot HASC
+bhasc112 <- ggplot(data = hasc112,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc112 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 112th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_112.png")
+
+# Scatterplot House of Representatives
+phr112 <- ggplot(data = house112,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr112 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 112th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_112.png")
+
+# 113th Congress
+# scatterplot HASC
+phasc113 <- ggplot(data = hasc113,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc113 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 113th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_113.png")
+
+# boxplot HASC
+bhasc113 <- ggplot(data = hasc113,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc113 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 113th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_113.png")
+
+# Scatterplot House of Representatives 
+phr113 <- ggplot(data = house113,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr113 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 113th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_113.png")
+
+# 114th Congress
+# scatterplot HASC
+phasc114 <- ggplot(data = hasc114,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phasc114 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 114th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_114.png")
+
+# boxplot HASC
+bhasc114 <- ggplot(data = hasc114,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhasc114 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "HASC, 114th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_114.png")
+
+# Scatterplot House of Representatives
+phr114 <- ggplot(data = house114,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+phr114 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 114th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_114.png")
+
+# plots of SASC and the Senate
+#102nd Congress
+# scatter plot SASC
+psasc102 <- ggplot(data = sasc102,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc102 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_102.png")
+
+# boxplot SASC
+bsasc102 <- ggplot(data = sasc102,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc102 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hasc_102.png")
+
+# Scatterplot Senate
+psen102 <- ggplot(data = sen102,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen102 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_102.png")
+
+# 103rd Congress
+# scatterplot SASC
+psasc103 <- ggplot(data = sasc103,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc103 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 103rd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sasc_103.png")
+
+# boxplot SASC
+bsasc103 <- ggplot(data = sasc103,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc103 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 103rd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_103.png")
+
+# Scatterplot Senate
+psen103 <- ggplot(data = sen103,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen103 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 103rd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_103.png")
+
+# 104th Congress
+# scatterplot SASC
+psasc104 <- ggplot(data = sasc104,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc104 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 104th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_104.png")
+
+# boxplot SASC
+bsasc104 <- ggplot(data = hasc104,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc104 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 104th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_104.png")
+
+# Scatterplot Senate
+psen104 <- ggplot(data = sen104,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen104 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 104th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_104.png")
+
+# 105th Congress
+# scatterplot SASC
+psasc105 <- ggplot(data = sasc105,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc105 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 105th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_105.png")
+
+# boxplot SASC
+bsasc105 <- ggplot(data = sasc105,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc105 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+  labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 105th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_105.png")
+
+# Scatterplot Senate
+psen105 <- ggplot(data = sen105,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen105 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 105th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_se_105.png")
+
+# 106th Congress
+# scatterplot SASC
+psasc106 <- ggplot(data = sasc106,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc106 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "sASC, 106th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_106.png")
+
+# boxplot sASC
+bsasc106 <- ggplot(data = sasc106,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc106 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 106th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_106.png")
+
+# Scatterplot Sneate
+psen106 <- ggplot(data = sen106,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen106 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 106th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hr_106.png")
+
+# 107th Congress
+# scatterplot SASC
+psasc107 <- ggplot(data = sasc107,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc107 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 107th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sasc_107.png")
+
+# boxplot SASC
+bsasc107 <- ggplot(data = sasc107,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc107 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 107th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_107.png")
+
+# Scatterplot Senate
+psen107 <- ggplot(data = sen107,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen107 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 107th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_107.png")
+
+# 108th Congress
+# scatterplot SASC
+psasc108 <- ggplot(data = sasc108,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc108 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 108th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sasc_108.png")
+
+# boxplot SASC
+bsasc108 <- ggplot(data = sasc108,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc108 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 108th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_108.png")
+
+# Scatterplot Senate
+psen108 <- ggplot(data = sen108,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen108 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 108th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_108.png")
+
+# 109th Congress
+# scatterplot SASC
+psasc109 <- ggplot(data = sasc109,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc109 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 109th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_109.png")
+
+# boxplot SASC
+bsasc109 <- ggplot(data = sasc109,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc109 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 109th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_109.png")
+
+# Scatterplot of Senate
+psen109 <- ggplot(data = sen109,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen109 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 109th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_109.png")
+
+# 110th Congress
+# scatterplot SASC
+psasc110 <- ggplot(data = sasc110,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc110 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 110th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sasc_110.png")
+
+# boxplot SASC
+bsasc110 <- ggplot(data = sasc110,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc110 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 110th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_110.png")
+
+# Scatterplot Senate
+psen110 <- ggplot(data = sen110,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen110 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 110th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_110.png")
+
+# 111th Congress
+# scatterplot SASC
+psasc111 <- ggplot(data = sasc111,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc111 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 111th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_hasc_111.png")
+
+# boxplot SASC
+bsasc111 <- ggplot(data = sasc111,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc111 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 111th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_111.png")
+
+# Scatterplot Senate
+psen111 <- ggplot(data = sen111,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen111 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 111th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_111.png")
+
+# 112th Congress
+# scatterplot SASC
+psasc112 <- ggplot(data = sasc112,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc112 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 112th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sasc_112.png")
+
+# boxplot SASC
+bsasc112 <- ggplot(data = sasc112,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc112 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 112th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_112.png")
+
+# Scatterplot Senate
+psen112 <- ggplot(data = sen112,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen112 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 112th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_112.png")
+
+# 113th Congress
+# scatterplot SASC
+psasc113 <- ggplot(data = sasc113,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc113 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 113th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sasc_113.png")
+
+# boxplot SASC
+bsasc113 <- ggplot(data = sasc113,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc113 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 113th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_113.png")
+
+# Scatterplot Senate
+psen113 <- ggplot(data = sen113,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen113 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 113th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_113.png")
+
+# 114th Congress
+# scatterplot SASC
+psasc114 <- ggplot(data = sasc114,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psasc114 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 114th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sasc_114.png")
+
+# boxplot SASC
+bsasc114 <- ggplot(data = sasc114,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bsasc114 + geom_boxplot() +
+  scale_color_manual(values=party_colors) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "SASC, 114th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sasc_114.png")
+
+# Scatterplot Senate
+psen114 <- ggplot(data = sen114,
+            mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
+psen114 + geom_point() + geom_smooth(method = lm) + 
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+  scale_x_continuous(limits=c(-.75,.75), breaks=seq(-.75,.75,.25)) +
+  labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 114th Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "pointplot_sen_114.png")
+
+```
+
+## Chamber Polarization
+
+
+
+
+
+
+
+
+
+
+
+# Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
