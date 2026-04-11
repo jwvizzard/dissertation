@@ -250,6 +250,488 @@ sasc114 <- subset( x = sen114,
                    )
 ```
 
+Calculate summary statistics for each house and each oversight committee.
+
+```{r echo = FALSE}
+
+summ_102_hr <-house102 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_102_hr, file = "summ_102_hr.csv",
+          row.names = FALSE)
+
+summ_102_hasc <- hasc102 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_102_hasc, file = "summ_102_hasc.csv",
+          row.names = FALSE)
+
+summ_102_sen <-sen102 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_102_sen, file = "summ_102_sen.csv",
+          row.names = FALSE)
+
+summ_102_sasc <- sasc102 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_102_sasc, file = "summ_102_sasc.csv",
+          row.names = FALSE)
+
+summ_103_hr <-house103 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_103_hr, file = "summ_103_hr.csv",
+          row.names = FALSE)
+
+summ_103_hasc <- hasc103 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_103_hasc, file = "summ_103_hasc.csv",
+          row.names = FALSE)
+
+summ_103_sen <-sen103 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_103_sen, file = "summ_103_sen.csv",
+          row.names = FALSE)
+
+summ_103_sasc <- sasc103 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_103_sasc, file = "summ_103_sasc.csv",
+          row.names = FALSE)
+
+summ_104_hr <-house104 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_104_hr, file = "summ_104_hr.csv",
+          row.names = FALSE)
+
+summ_104_hasc <- hasc104 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_104_hasc, file = "summ_104_hasc.csv",
+          row.names = FALSE)
+
+summ_104_sen <-sen104 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_104_sen, file = "summ_104_sen.csv",
+          row.names = FALSE)
+
+summ_104_sasc <- sasc104 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_104_sasc, file = "summ_104_sasc.csv",
+          row.names = FALSE)
+
+summ_105_hr <-house105 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_105_hr, file = "summ_105_hr.csv",
+          row.names = FALSE)
+
+summ_105_hasc <- hasc105 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_105_hasc, file = "summ_105_hasc.csv",
+          row.names = FALSE)
+
+summ_105_sen <-sen105 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_105_sen, file = "summ_105_sen.csv",
+          row.names = FALSE)
+
+summ_105_sasc <- sasc105 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_105_sasc, file = "summ_105_sasc.csv",
+          row.names = FALSE)
+
+summ_106_hr <-house106 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_106_hr, file = "summ_106_hr.csv",
+          row.names = FALSE)
+
+summ_106_hasc <- hasc106 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_106_hasc, file = "summ_106_hasc.csv",
+          row.names = FALSE)
+
+summ_106_sen <-sen106 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_106_sen, file = "summ_106_sen.csv",
+          row.names = FALSE)
+
+summ_106_sasc <- sasc106 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_106_sasc, file = "summ_106_sasc.csv",
+          row.names = FALSE)
+
+summ_107_hr <-house107 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_107_hr, file = "summ_107_hr.csv",
+          row.names = FALSE)
+
+summ_107_hasc <- hasc107 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_107_hasc, file = "summ_107_hasc.csv",
+          row.names = FALSE)
+
+summ_107_sen <-sen107 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_107_sen, file = "summ_107_sen.csv",
+          row.names = FALSE)
+
+summ_107_sasc <- sasc107 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_107_sasc, file = "summ_107_sasc.csv",
+          row.names = FALSE)
+
+summ_108_hr <-house108 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_108_hr, file = "summ_108_hr.csv",
+          row.names = FALSE)
+
+summ_108_hasc <- hasc108 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_108_hasc, file = "summ_108_hasc.csv",
+          row.names = FALSE)
+
+summ_108_sen <-sen108 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_108_sen, file = "summ_108_sen.csv",
+          row.names = FALSE)
+
+summ_108_sasc <- sasc108 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_108_sasc, file = "summ_108_sasc.csv",
+          row.names = FALSE)
+
+summ_109_hr <-house109 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_109_hr, file = "summ_109_hr.csv",
+          row.names = FALSE)
+
+summ_109_hasc <- hasc109 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_109_hasc, file = "summ_109_hasc.csv",
+          row.names = FALSE)
+
+summ_109_sen <-sen109 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_109_sen, file = "summ_109_sen.csv",
+          row.names = FALSE)
+
+summ_109_sasc <- sasc109 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_109_sasc, file = "summ_109_sasc.csv",
+          row.names = FALSE)
+
+summ_110_hr <-house110 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_110_hr, file = "summ_110_hr.csv",
+          row.names = FALSE)
+
+summ_110_hasc <- hasc110 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_110_hasc, file = "summ_110_hasc.csv",
+          row.names = FALSE)
+
+summ_110_sen <-sen110 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_110_sen, file = "summ_110_sen.csv",
+          row.names = FALSE)
+
+summ_110_sasc <- sasc110 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_110_sasc, file = "summ_110_sasc.csv",
+          row.names = FALSE)
+
+summ_111_hr <-house111 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_111_hr, file = "summ_111_hr.csv",
+          row.names = FALSE)
+
+summ_111_hasc <- hasc111 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_111_hasc, file = "summ_111_hasc.csv",
+          row.names = FALSE)
+
+summ_111_sen <-sen111 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_111_sen, file = "summ_111_sen.csv",
+          row.names = FALSE)
+
+summ_111_sasc <- sasc111 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_111_sasc, file = "summ_111_sasc.csv",
+          row.names = FALSE)
+
+summ_112_hr <-house112 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_112_hr, file = "summ_112_hr.csv",
+          row.names = FALSE)
+
+summ_112_hasc <- hasc112 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_112_hasc, file = "summ_112_hasc.csv",
+          row.names = FALSE)
+
+summ_112_sen <-sen112 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_112_sen, file = "summ_112_sen.csv",
+          row.names = FALSE)
+
+summ_112_sasc <- sasc112 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_112_sasc, file = "summ_112_sasc.csv",
+          row.names = FALSE)
+
+summ_113_hr <-house113 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_113_hr, file = "summ_113_hr.csv",
+          row.names = FALSE)
+
+summ_113_hasc <- hasc113 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_113_hasc, file = "summ_113_hasc.csv",
+          row.names = FALSE)
+
+summ_113_sen <-sen113 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_113_sen, file = "summ_113_sen.csv",
+          row.names = FALSE)
+
+summ_113_sasc <- sasc113 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_113_sasc, file = "summ_113_sasc.csv",
+          row.names = FALSE)
+
+summ_114_hr <-house114 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_114_hr, file = "summ_114_hr.csv",
+          row.names = FALSE)
+
+summ_114_hasc <- hasc114 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_114_hasc, file = "summ_114_hasc.csv",
+          row.names = FALSE)
+
+summ_114_sen <-sen114 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_114_sen, file = "summ_114_sen.csv",
+          row.names = FALSE)
+
+summ_114_sasc <- sasc114 %>%
+  group_by(party) %>% 
+  summarize(min = min(nominate_dim1),
+            median = median(nominate_dim1),
+            mean = mean(nominate_dim1),
+            max = max(nominate_dim1))
+write.csv(summ_114_sasc, file = "summ_114_sasc.csv",
+          row.names = FALSE)
+
+
+
+```
+
+
+
+
+
+
+
 ## Plots of committee and chamber NOMINATE scores
 ```{r fig.width=6, fig.height=3.75, echo = FALSE}
 
@@ -279,8 +761,9 @@ ggsave(filename = "pointplot_hasc_102.png")
 bhasc102 <- ggplot(data = hasc102,
             mapping = aes(x = party, y = nominate_dim1, color = party))
 bhasc102 + geom_boxplot() +
-  scale_color_manual(values=party_colors) +
-  
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
 labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 102nd Congress",
@@ -303,6 +786,20 @@ phr102 + geom_point() +
      caption = "Source: DW-NOMINATE")
 ggsave(filename = "pointplot_hr_102.png")
 ggsave(filename = "pointplot_hr_102.pdf")
+
+# boxplot House of Representatives
+bhr102 <- ggplot(data = house102,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhr102 + geom_boxplot() +
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "House of Representatives, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_hr_102.png")
+ggsave(filename = "boxplot_hr_102.pdf")
 
 # 103rd Congress
 # scatterplot HASC
@@ -863,6 +1360,20 @@ psen102 + geom_point() + geom_smooth(method = lm) +
      caption = "Source: DW-NOMINATE")
 ggsave(filename = "pointplot_sen_102.png")
 ggsave(filename = "pointplot_sen_102.pdf")
+
+# boxplot Senate
+bsen102 <- ggplot(data = sen102,
+            mapping = aes(x = party, y = nominate_dim1, color = party))
+bhr102 + geom_boxplot() +
+  scale_color_manual(values = c("D" = "blue", 
+                                "R" = "red", 
+                                "I" = "purple")) +
+labs(x = "Party", y = "Liberal / Conservative (econ)",
+     title = "Ideological Distribution",
+     subtitle = "Senate, 102nd Congress",
+     caption = "Source: DW-NOMINATE")
+ggsave(filename = "boxplot_sen_102.png")
+ggsave(filename = "boxplot_sen_102.pdf")
 
 # 103rd Congress
 # scatterplot SASC
