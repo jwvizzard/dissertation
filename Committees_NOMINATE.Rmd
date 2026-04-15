@@ -754,8 +754,8 @@ labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
      title = "Ideological Distribution",
      subtitle = "HASC, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_102.pdf")
-ggsave(filename = "pointplot_hasc_102.png")
+ggsave(filename = "plots/pointplot_hasc_102.pdf")
+ggsave(filename = "plots/pointplot_hasc_102.png")
 
 # boxplot HASC
 bhasc102 <- ggplot(data = hasc102,
@@ -768,8 +768,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_102.png")
-ggsave(filename = "boxplot_hasc_102.pdf")
+ggsave(filename = "plots/boxplot_hasc_102.png")
+ggsave(filename = "plots/boxplot_hasc_102.pdf")
 
 # Scatterplot House of Representatives
 phr102 <- ggplot(data = house102,
@@ -784,8 +784,8 @@ phr102 + geom_point() +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_102.png")
-ggsave(filename = "pointplot_hr_102.pdf")
+ggsave(filename = "plots/pointplot_hr_102.png")
+ggsave(filename = "plots/pointplot_hr_102.pdf")
 
 # boxplot House of Representatives
 bhr102 <- ggplot(data = house102,
@@ -798,8 +798,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hr_102.png")
-ggsave(filename = "boxplot_hr_102.pdf")
+ggsave(filename = "plots/boxplot_hr_102.png")
+ggsave(filename = "plots/boxplot_hr_102.pdf")
 
 # 103rd Congress
 # scatterplot HASC
@@ -814,8 +814,8 @@ labs(x = "Liberal / Conservative (econ)", y = "Intraparty",
      title = "Ideological Distribution",
      subtitle = "HASC, 103rd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_103.png")
-ggsave(filename = "pointplot_hasc_103.pdf")
+ggsave(filename = "plots/pointplot_hasc_103.png")
+ggsave(filename = "plots/pointplot_hasc_103.pdf")
 
 # boxplot HASC
 bhasc103 <- ggplot(data = hasc103,
@@ -826,8 +826,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 103rd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_103.png")
-ggsave(filename = "boxplot_hasc_103.pdf")
+ggsave(filename = "plots/boxplot_hasc_103.png")
+ggsave(filename = "plots/boxplot_hasc_103.pdf")
 
 # Scatterplot House of Representatives in
 phr103 <- ggplot(data = house103,
@@ -841,8 +841,8 @@ phr103 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 103rd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_103.png")
-ggsave(filename = "pointplot_hr_103.pdf")
+ggsave(filename = "plots/pointplot_hr_103.png")
+ggsave(filename = "plots/pointplot_hr_103.pdf")
 
 # 104th Congress
 # scatterplot HASC
@@ -857,8 +857,8 @@ phasc104 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 104th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_104.png")
-ggsave(filename = "pointplot_hasc_104.pdf")
+ggsave(filename = "plots/pointplot_hasc_104.png")
+ggsave(filename = "plots/pointplot_hasc_104.pdf")
 
 # boxplot HASC
 bhasc104 <- ggplot(data = hasc104,
@@ -869,8 +869,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 104th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_104.png")
-ggsave(filename = "boxplot_hasc_104.pdf")
+ggsave(filename = "plots/boxplot_hasc_104.png")
+ggsave(filename = "plots/boxplot_hasc_104.pdf")
 
 # Scatterplot House of Representatives
 phr104 <- ggplot(data = house104,
@@ -884,8 +884,8 @@ phr104 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 104th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_104.png")
-ggsave(filename = "pointplot_hr_104.pdf")
+ggsave(filename = "plots/pointplot_hr_104.png")
+ggsave(filename = "plots/pointplot_hr_104.pdf")
 
 # 105th Congress
 # scatterplot HASC
@@ -900,8 +900,8 @@ phasc105 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 105th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_105.png")
-ggsave(filename = "pointplot_hasc_105.pdf")
+ggsave(filename = "plots/pointplot_hasc_105.png")
+ggsave(filename = "plots/pointplot_hasc_105.pdf")
 
 # boxplot HASC
 bhasc105 <- ggplot(data = hasc105,
@@ -912,8 +912,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 105th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_105.png")
-ggsave(filename = "boxplot_hasc_105.pdf")
+ggsave(filename = "plots/boxplot_hasc_105.png")
+ggsave(filename = "plots/boxplot_hasc_105.pdf")
 
 # Scatterplot House of Representatives
 phr105 <- ggplot(data = house105,
@@ -927,8 +927,8 @@ phr105 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 105th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_105.png")
-ggsave(filename = "pointplot_hr_105.pdf")
+ggsave(filename = "plots/pointplot_hr_105.png")
+ggsave(filename = "plots/pointplot_hr_105.pdf")
 
 # 106th Congress
 # scatterplot HASC
@@ -943,8 +943,8 @@ phasc106 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 106th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_106.png")
-ggsave(filename = "pointplot_hasc_106.pdf")
+ggsave(filename = "plots/pointplot_hasc_106.png")
+ggsave(filename = "plots/pointplot_hasc_106.pdf")
 
 # boxplot HASC
 bhasc106 <- ggplot(data = hasc106,
@@ -955,8 +955,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 106th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_106.png")
-ggsave(filename = "boxplot_hasc_106.pdf")
+ggsave(filename = "plots/boxplot_hasc_106.png")
+ggsave(filename = "plots/boxplot_hasc_106.pdf")
 
 # Scatterplot House of Representatives
 phr106 <- ggplot(data = house106,
@@ -970,8 +970,8 @@ phr106 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 106th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_106.png")
-ggsave(filename = "pointplot_hr_106.pdf")
+ggsave(filename = "plots/pointplot_hr_106.png")
+ggsave(filename = "plots/pointplot_hr_106.pdf")
 
 # 107th Congress
 # scatterplot HASC
@@ -986,8 +986,8 @@ phasc107 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 107th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_107.png")
-ggsave(filename = "pointplot_hasc_107.pdf")
+ggsave(filename = "plots/pointplot_hasc_107.png")
+ggsave(filename = "plots/pointplot_hasc_107.pdf")
 
 # boxplot HASC
 bhasc107 <- ggplot(data = hasc107,
@@ -998,8 +998,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 107th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_107.png")
-ggsave(filename = "boxplot_hasc_107.pdf")
+ggsave(filename = "plots/boxplot_hasc_107.png")
+ggsave(filename = "plots/boxplot_hasc_107.pdf")
 
 # Scatterplot House of Representatives
 phr107 <- ggplot(data = house107,
@@ -1013,8 +1013,8 @@ phr107 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 107th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_107.png")
-ggsave(filename = "pointplot_hr_107.pdf")
+ggsave(filename = "plots/pointplot_hr_107.png")
+ggsave(filename = "plots/pointplot_hr_107.pdf")
 
 # 108th Congress
 # scatterplot HASC
@@ -1029,8 +1029,8 @@ phasc108 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 108th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_108.png")
-ggsave(filename = "pointplot_hasc_108.pdf")
+ggsave(filename = "plots/pointplot_hasc_108.png")
+ggsave(filename = "plots/pointplot_hasc_108.pdf")
 
 # boxplot HASC
 bhasc108 <- ggplot(data = hasc108,
@@ -1041,8 +1041,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 108th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_108.png")
-ggsave(filename = "boxplot_hasc_108.pdf")
+ggsave(filename = "plots/boxplot_hasc_108.png")
+ggsave(filename = "plots/boxplot_hasc_108.pdf")
 
 # Scatterplot House of Representatives
 phr108 <- ggplot(data = house108,
@@ -1056,8 +1056,8 @@ phr108 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 108th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_108.png")
-ggsave(filename = "pointplot_hr_108.pdf")
+ggsave(filename = "plots/pointplot_hr_108.png")
+ggsave(filename = "plots/pointplot_hr_108.pdf")
 
 # 109th Congress
 # scatterplot HASC
@@ -1072,8 +1072,8 @@ phasc109 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 109th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_109.png")
-ggsave(filename = "pointplot_hasc_109.pdf")
+ggsave(filename = "plots/pointplot_hasc_109.png")
+ggsave(filename = "plots/pointplot_hasc_109.pdf")
 
 # boxplot HASC
 bhasc109 <- ggplot(data = hasc109,
@@ -1084,8 +1084,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 109th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_109.png")
-ggsave(filename = "boxplot_hasc_109.pdf")
+ggsave(filename = "plots/boxplot_hasc_109.png")
+ggsave(filename = "plots/boxplot_hasc_109.pdf")
 
 # Scatterplot of House of Representatives
 phr109 <- ggplot(data = house109,
@@ -1099,8 +1099,8 @@ phr109 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 109th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_109.png")
-ggsave(filename = "pointplot_hr_109.pdf")
+ggsave(filename = "plots/pointplot_hr_109.png")
+ggsave(filename = "plots/pointplot_hr_109.pdf")
 
 # 110th Congress
 # scatterplot HASC
@@ -1115,8 +1115,8 @@ phasc110 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 110th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_110.png")
-ggsave(filename = "pointplot_hasc_110.pdf")
+ggsave(filename = "plots/pointplot_hasc_110.png")
+ggsave(filename = "plots/pointplot_hasc_110.pdf")
 
 # boxplot HASC
 bhasc110 <- ggplot(data = hasc110,
@@ -1127,8 +1127,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 110th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_110.png")
-ggsave(filename = "boxplot_hasc_110.pdf")
+ggsave(filename = "plots/boxplot_hasc_110.png")
+ggsave(filename = "plots/boxplot_hasc_110.pdf")
 
 # Scatterplot House of Representatives
 phr110 <- ggplot(data = house110,
@@ -1142,8 +1142,8 @@ phr110 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 110th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_110.png")
-ggsave(filename = "pointplot_hr_110.pdf")
+ggsave(filename = "plots/pointplot_hr_110.png")
+ggsave(filename = "plots/pointplot_hr_110.pdf")
 
 # 111th Congress
 # scatterplot HASC
@@ -1158,8 +1158,8 @@ phasc111 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 111th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_111.png")
-ggsave(filename = "pointplot_hasc_111.pdf")
+ggsave(filename = "plots/pointplot_hasc_111.png")
+ggsave(filename = "plots/pointplot_hasc_111.pdf")
 
 # boxplot HASC
 bhasc111 <- ggplot(data = hasc111,
@@ -1170,8 +1170,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 111th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_111.png")
-ggsave(filename = "boxplot_hasc_111.pdf")
+ggsave(filename = "plots/boxplot_hasc_111.png")
+ggsave(filename = "plots/boxplot_hasc_111.pdf")
 
 # Scatterplot House of Representatives
 phr111 <- ggplot(data = house111,
@@ -1185,8 +1185,8 @@ phr111 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 111th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_111.png")
-ggsave(filename = "pointplot_hr_111.pdf")
+ggsave(filename = "plots/pointplot_hr_111.png")
+ggsave(filename = "plots/pointplot_hr_111.pdf")
 
 # 112th Congress
 # scatterplot HASC
@@ -1201,8 +1201,8 @@ phasc112 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 112th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_112.png")
-ggsave(filename = "pointplot_hasc_112.pdf")
+ggsave(filename = "plots/pointplot_hasc_112.png")
+ggsave(filename = "plots/pointplot_hasc_112.pdf")
 
 # boxplot HASC
 bhasc112 <- ggplot(data = hasc112,
@@ -1213,8 +1213,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 112th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_112.png")
-ggsave(filename = "boxplot_hasc_112.pdf")
+ggsave(filename = "plots/boxplot_hasc_112.png")
+ggsave(filename = "plots/boxplot_hasc_112.pdf")
 
 # Scatterplot House of Representatives
 phr112 <- ggplot(data = house112,
@@ -1228,8 +1228,8 @@ phr112 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 112th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_112.png")
-ggsave(filename = "pointplot_hr_112.pdf")
+ggsave(filename = "plots/pointplot_hr_112.png")
+ggsave(filename = "plots/pointplot_hr_112.pdf")
 
 # 113th Congress
 # scatterplot HASC
@@ -1244,8 +1244,8 @@ phasc113 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 113th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_113.png")
-ggsave(filename = "pointplot_hasc_113.pdf")
+ggsave(filename = "plots/pointplot_hasc_113.png")
+ggsave(filename = "plots/pointplot_hasc_113.pdf")
 
 # boxplot HASC
 bhasc113 <- ggplot(data = hasc113,
@@ -1256,8 +1256,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 113th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_113.png")
-ggsave(filename = "boxplot_hasc_113.pdf")
+ggsave(filename = "plots/boxplot_hasc_113.png")
+ggsave(filename = "plots/boxplot_hasc_113.pdf")
 
 # Scatterplot House of Representatives 
 phr113 <- ggplot(data = house113,
@@ -1271,8 +1271,8 @@ phr113 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 113th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_113.png")
-ggsave(filename = "pointplot_hr_113.pdf")
+ggsave(filename = "plots/pointplot_hr_113.png")
+ggsave(filename = "plots/pointplot_hr_113.pdf")
 
 # 114th Congress
 # scatterplot HASC
@@ -1287,8 +1287,8 @@ phasc114 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "HASC, 114th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hasc_114.png")
-ggsave(filename = "pointplot_hasc_114.pdf")
+ggsave(filename = "plots/pointplot_hasc_114.png")
+ggsave(filename = "plots/pointplot_hasc_114.pdf")
 
 # boxplot HASC
 bhasc114 <- ggplot(data = hasc114,
@@ -1299,8 +1299,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "HASC, 114th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_hasc_114.png")
-ggsave(filename = "boxplot_hasc_114.pdf")
+ggsave(filename = "plots/boxplot_hasc_114.png")
+ggsave(filename = "plots/boxplot_hasc_114.pdf")
 
 # Scatterplot House of Representatives
 phr114 <- ggplot(data = house114,
@@ -1314,8 +1314,8 @@ phr114 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "House of Representatives, 114th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_hr_114.png")
-ggsave(filename = "pointplot_hr_114.pdf")
+ggsave(filename = "plots/pointplot_hr_114.png")
+ggsave(filename = "plots/pointplot_hr_114.pdf")
 
 # plots of SASC and the Senate
 #102nd Congress
@@ -1331,8 +1331,8 @@ psasc102 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_102.png")
-ggsave(filename = "pointplot_sasc_102.pdf")
+ggsave(filename = "plots/pointplot_sasc_102.png")
+ggsave(filename = "plots/pointplot_sasc_102.pdf")
 
 # boxplot SASC
 bsasc102 <- ggplot(data = sasc102,
@@ -1343,8 +1343,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_102.png")
-ggsave(filename = "boxplot_sasc_102.pdf")
+ggsave(filename = "plots/boxplot_sasc_102.png")
+ggsave(filename = "plots/boxplot_sasc_102.pdf")
 
 # Scatterplot Senate
 psen102 <- ggplot(data = sen102,
@@ -1358,8 +1358,8 @@ psen102 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_102.png")
-ggsave(filename = "pointplot_sen_102.pdf")
+ggsave(filename = "plots/pointplot_sen_102.png")
+ggsave(filename = "plots/pointplot_sen_102.pdf")
 
 # boxplot Senate
 bsen102 <- ggplot(data = sen102,
@@ -1372,8 +1372,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "Senate, 102nd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sen_102.png")
-ggsave(filename = "boxplot_sen_102.pdf")
+ggsave(filename = "plots/boxplot_sen_102.png")
+ggsave(filename = "plots/boxplot_sen_102.pdf")
 
 # 103rd Congress
 # scatterplot SASC
@@ -1388,8 +1388,8 @@ psasc103 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 103rd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_103.png")
-ggsave(filename = "pointplot_sasc_103.pdf")
+ggsave(filename = "plots/pointplot_sasc_103.png")
+ggsave(filename = "plots/pointplot_sasc_103.pdf")
 
 # boxplot SASC
 bsasc103 <- ggplot(data = sasc103,
@@ -1400,8 +1400,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 103rd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_103.png")
-ggsave(filename = "boxplot_sasc_103.pdf")
+ggsave(filename = "plots/boxplot_sasc_103.png")
+ggsave(filename = "plots/boxplot_sasc_103.pdf")
 
 # Scatterplot Senate
 psen103 <- ggplot(data = sen103,
@@ -1415,8 +1415,8 @@ psen103 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 103rd Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_103.png")
-ggsave(filename = "pointplot_sen_103.pdf")
+ggsave(filename = "plots/pointplot_sen_103.png")
+ggsave(filename = "plots/pointplot_sen_103.pdf")
 
 # 104th Congress
 # scatterplot SASC
@@ -1431,8 +1431,8 @@ psasc104 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 104th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_104.png")
-ggsave(filename = "pointplot_sasc_104.pdf")
+ggsave(filename = "plots/pointplot_sasc_104.png")
+ggsave(filename = "plots/pointplot_sasc_104.pdf")
 
 # boxplot SASC
 bsasc104 <- ggplot(data = hasc104,
@@ -1443,8 +1443,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 104th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_104.png")
-ggsave(filename = "boxplot_sasc_104.pdf")
+ggsave(filename = "plots/boxplot_sasc_104.png")
+ggsave(filename = "plots/boxplot_sasc_104.pdf")
 
 # Scatterplot Senate
 psen104 <- ggplot(data = sen104,
@@ -1458,8 +1458,8 @@ psen104 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 104th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_104.png")
-ggsave(filename = "pointplot_sen_104.pdf")
+ggsave(filename = "plots/pointplot_sen_104.png")
+ggsave(filename = "plots/pointplot_sen_104.pdf")
 
 # 105th Congress
 # scatterplot SASC
@@ -1474,8 +1474,8 @@ psasc105 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 105th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_105.png")
-ggsave(filename = "pointplot_sasc_105.pdf")
+ggsave(filename = "plots/pointplot_sasc_105.png")
+ggsave(filename = "plots/pointplot_sasc_105.pdf")
 
 # boxplot SASC
 bsasc105 <- ggplot(data = sasc105,
@@ -1486,8 +1486,8 @@ bsasc105 + geom_boxplot() +
      title = "Ideological Distribution",
      subtitle = "SASC, 105th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_105.png")
-ggsave(filename = "boxplot_sasc_105.pdf")
+ggsave(filename = "plots/boxplot_sasc_105.png")
+ggsave(filename = "plots/boxplot_sasc_105.pdf")
 
 # Scatterplot Senate
 psen105 <- ggplot(data = sen105,
@@ -1501,8 +1501,8 @@ psen105 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 105th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_105.png")
-ggsave(filename = "pointplot_sen_105.pdf")
+ggsave(filename = "plots/pointplot_sen_105.png")
+ggsave(filename = "plots/pointplot_sen_105.pdf")
 
 # 106th Congress
 # scatterplot SASC
@@ -1517,10 +1517,10 @@ psasc106 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "sASC, 106th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_106.png")
-ggsave(filename = "pointplot_sasc_106.pdf")
+ggsave(filename = "plots/pointplot_sasc_106.png")
+ggsave(filename = "plots/pointplot_sasc_106.pdf")
 
-# boxplot sASC
+# boxplot SASC
 bsasc106 <- ggplot(data = sasc106,
             mapping = aes(x = party, y = nominate_dim1, color = party))
 bsasc106 + geom_boxplot() +
@@ -1529,10 +1529,10 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 106th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_106.png")
-ggsave(filename = "boxplot_sasc_106.pdf")
+ggsave(filename = "plots/boxplot_sasc_106.png")
+ggsave(filename = "plots/boxplot_sasc_106.pdf")
 
-# Scatterplot Sneate
+# Scatterplot Senate
 psen106 <- ggplot(data = sen106,
             mapping = aes(x = nominate_dim1, y = nominate_dim2, color = party))
 psen106 + geom_point() + geom_smooth(method = lm) + 
@@ -1544,8 +1544,8 @@ psen106 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 106th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_106.png")
-ggsave(filename = "pointplot_sen_106.pdf")
+ggsave(filename = "plots/pointplot_sen_106.png")
+ggsave(filename = "plots/pointplot_sen_106.pdf")
 
 # 107th Congress
 # scatterplot SASC
@@ -1560,8 +1560,8 @@ psasc107 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 107th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_107.png")
-ggsave(filename = "pointplot_sasc_107.pdf")
+ggsave(filename = "plots/pointplot_sasc_107.png")
+ggsave(filename = "plots/pointplot_sasc_107.pdf")
 
 # boxplot SASC
 bsasc107 <- ggplot(data = sasc107,
@@ -1572,8 +1572,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 107th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_107.png")
-ggsave(filename = "boxplot_sasc_107.pdf")
+ggsave(filename = "plots/boxplot_sasc_107.png")
+ggsave(filename = "plots/boxplot_sasc_107.pdf")
 
 # Scatterplot Senate
 psen107 <- ggplot(data = sen107,
@@ -1587,8 +1587,8 @@ psen107 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 107th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_107.png")
-ggsave(filename = "pointplot_sen_107.pdf")
+ggsave(filename = "plots/pointplot_sen_107.png")
+ggsave(filename = "plots/pointplot_sen_107.pdf")
 
 # 108th Congress
 # scatterplot SASC
@@ -1603,8 +1603,8 @@ psasc108 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 108th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_108.png")
-ggsave(filename = "pointplot_sasc_108.pdf")
+ggsave(filename = "plots/pointplot_sasc_108.png")
+ggsave(filename = "plots/pointplot_sasc_108.pdf")
 
 # boxplot SASC
 bsasc108 <- ggplot(data = sasc108,
@@ -1615,8 +1615,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 108th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_108.png")
-ggsave(filename = "boxplot_sasc_108.pdf")
+ggsave(filename = "plots/boxplot_sasc_108.png")
+ggsave(filename = "plots/boxplot_sasc_108.pdf")
 
 # Scatterplot Senate
 psen108 <- ggplot(data = sen108,
@@ -1630,8 +1630,8 @@ psen108 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 108th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_108.png")
-ggsave(filename = "pointplot_sen_108.pdf")
+ggsave(filename = "plots/pointplot_sen_108.png")
+ggsave(filename = "plots/pointplot_sen_108.pdf")
 
 # 109th Congress
 # scatterplot SASC
@@ -1646,8 +1646,8 @@ psasc109 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 109th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_109.png")
-ggsave(filename = "pointplot_sasc_109.pdf")
+ggsave(filename = "plots/pointplot_sasc_109.png")
+ggsave(filename = "plots/pointplot_sasc_109.pdf")
 
 # boxplot SASC
 bsasc109 <- ggplot(data = sasc109,
@@ -1658,8 +1658,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 109th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_109.png")
-ggsave(filename = "boxplot_sasc_109.pdf")
+ggsave(filename = "plots/boxplot_sasc_109.png")
+ggsave(filename = "plots/boxplot_sasc_109.pdf")
 
 # Scatterplot of Senate
 psen109 <- ggplot(data = sen109,
@@ -1673,8 +1673,8 @@ psen109 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 109th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_109.png")
-ggsave(filename = "pointplot_sen_109.pdf")
+ggsave(filename = "plots/pointplot_sen_109.png")
+ggsave(filename = "plots/pointplot_sen_109.pdf")
 
 # 110th Congress
 # scatterplot SASC
@@ -1689,8 +1689,8 @@ psasc110 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 110th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_110.png")
-ggsave(filename = "pointplot_sasc_110.pdf")
+ggsave(filename = "plots/pointplot_sasc_110.png")
+ggsave(filename = "plots/pointplot_sasc_110.pdf")
 
 # boxplot SASC
 bsasc110 <- ggplot(data = sasc110,
@@ -1701,8 +1701,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 110th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_110.png")
-ggsave(filename = "boxplot_sasc_110.pdf")
+ggsave(filename = "plots/boxplot_sasc_110.png")
+ggsave(filename = "plots/boxplot_sasc_110.pdf")
 
 # Scatterplot Senate
 psen110 <- ggplot(data = sen110,
@@ -1716,8 +1716,8 @@ psen110 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 110th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_110.png")
-ggsave(filename = "pointplot_sen_110.pdf")
+ggsave(filename = "plots/pointplot_sen_110.png")
+ggsave(filename = "plots/pointplot_sen_110.pdf")
 
 # 111th Congress
 # scatterplot SASC
@@ -1732,8 +1732,8 @@ psasc111 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 111th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_111.png")
-ggsave(filename = "pointplot_sasc_111.pdf")
+ggsave(filename = "plots/pointplot_sasc_111.png")
+ggsave(filename = "plots/pointplot_sasc_111.pdf")
 
 # boxplot SASC
 bsasc111 <- ggplot(data = sasc111,
@@ -1744,8 +1744,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 111th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_111.png")
-ggsave(filename = "boxplot_sasc_111.pdf")
+ggsave(filename = "plots/boxplot_sasc_111.png")
+ggsave(filename = "plots/boxplot_sasc_111.pdf")
 
 # Scatterplot Senate
 psen111 <- ggplot(data = sen111,
@@ -1759,8 +1759,8 @@ psen111 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 111th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_111.png")
-ggsave(filename = "pointplot_sen_111.pdf")
+ggsave(filename = "plots/pointplot_sen_111.png")
+ggsave(filename = "plots/pointplot_sen_111.pdf")
 
 # 112th Congress
 # scatterplot SASC
@@ -1775,8 +1775,8 @@ psasc112 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 112th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_112.png")
-ggsave(filename = "pointplot_sasc_112.pdf")
+ggsave(filename = "plots/pointplot_sasc_112.png")
+ggsave(filename = "plots/pointplot_sasc_112.pdf")
 
 # boxplot SASC
 bsasc112 <- ggplot(data = sasc112,
@@ -1787,8 +1787,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 112th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_112.png")
-ggsave(filename = "boxplot_sasc_112.pdf")
+ggsave(filename = "plots/boxplot_sasc_112.png")
+ggsave(filename = "plots/boxplot_sasc_112.pdf")
 
 # Scatterplot Senate
 psen112 <- ggplot(data = sen112,
@@ -1802,8 +1802,8 @@ psen112 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 112th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_112.png")
-ggsave(filename = "pointplot_sen_112.pdf")
+ggsave(filename = "plots/pointplot_sen_112.png")
+ggsave(filename = "plots/pointplot_sen_112.pdf")
 
 # 113th Congress
 # scatterplot SASC
@@ -1818,8 +1818,8 @@ psasc113 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 113th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_113.png")
-ggsave(filename = "pointplot_sasc_113.pdf")
+ggsave(filename = "plots/pointplot_sasc_113.png")
+ggsave(filename = "plots/pointplot_sasc_113.pdf")
 
 # boxplot SASC NEED TO FIX THIS FOR COLORS
 bsasc113 <- ggplot(data = sasc113,
@@ -1830,8 +1830,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 113th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_113.png")
-ggsave(filename = "boxplot_sasc_113.pdf")
+ggsave(filename = "plots/boxplot_sasc_113.png")
+ggsave(filename = "plots/boxplot_sasc_113.pdf")
 
 # Scatterplot Senate
 psen113 <- ggplot(data = sen113,
@@ -1845,8 +1845,8 @@ psen113 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 113th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_113.png")
-ggsave(filename = "pointplot_sen_113.pdf")
+ggsave(filename = "plots/pointplot_sen_113.png")
+ggsave(filename = "plots/pointplot_sen_113.pdf")
 
 # 114th Congress
 # scatterplot SASC
@@ -1861,8 +1861,8 @@ psasc114 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "SASC, 114th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sasc_114.png")
-ggsave(filename = "pointplot_sasc_114.pdf")
+ggsave(filename = "plots/pointplot_sasc_114.png")
+ggsave(filename = "plots/pointplot_sasc_114.pdf")
 
 # boxplot SASC
 bsasc114 <- ggplot(data = sasc114,
@@ -1873,8 +1873,8 @@ labs(x = "Party", y = "Liberal / Conservative (econ)",
      title = "Ideological Distribution",
      subtitle = "SASC, 114th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "boxplot_sasc_114.png")
-ggsave(filename = "boxplot_sasc_114.pdf")
+ggsave(filename = "plots/boxplot_sasc_114.png")
+ggsave(filename = "plots/boxplot_sasc_114.pdf")
 
 # Scatterplot Senate
 psen114 <- ggplot(data = sen114,
@@ -1888,8 +1888,8 @@ psen114 + geom_point() + geom_smooth(method = lm) +
      title = "Ideological Distribution",
      subtitle = "Senate, 114th Congress",
      caption = "Source: DW-NOMINATE")
-ggsave(filename = "pointplot_sen_114.png")
-ggsave(filename = "pointplot_sen_114.pdf")
+ggsave(filename = "plots/pointplot_sen_114.png")
+ggsave(filename = "plots/pointplot_sen_114.pdf")
 
 ```
 
