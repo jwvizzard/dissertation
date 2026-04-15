@@ -29,8 +29,8 @@ library(RColorBrewer)   # RColorBrewer provides color palettes for plots
 
 # Set home folder
 ```{r, echo = FALSE}
-# here() starts at /Library/CloudStorage/ProtonDrive-james.vizzard@proton.me-folder/James/201801-20YYMM_PhD/P_Dissertation
-i_am("/Documents/Dissertation/")
+#here() starts at /Users/james-macbook/Data/Dissertation
+here::i_am("Committees_Nominate.Rmd")
 ```
 
 # Load data and create subsets by chamber by congress
@@ -260,7 +260,7 @@ summ_102_hr <-house102 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_102_hr, file = "summ_102_hr.csv",
+write.csv(summ_102_hr, file = "summary_stats/summ_102_hr.csv",
           row.names = FALSE)
 
 summ_102_hasc <- hasc102 %>%
@@ -269,7 +269,7 @@ summ_102_hasc <- hasc102 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_102_hasc, file = "summ_102_hasc.csv",
+write.csv(summ_102_hasc, file = "summary_stats/summ_102_hasc.csv",
           row.names = FALSE)
 
 summ_102_sen <-sen102 %>%
@@ -278,7 +278,7 @@ summ_102_sen <-sen102 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_102_sen, file = "summ_102_sen.csv",
+write.csv(summ_102_sen, file = "summary_stats/summ_102_sen.csv",
           row.names = FALSE)
 
 summ_102_sasc <- sasc102 %>%
@@ -287,7 +287,7 @@ summ_102_sasc <- sasc102 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_102_sasc, file = "summ_102_sasc.csv",
+write.csv(summ_102_sasc, file = "summary_stats/summ_102_sasc.csv",
           row.names = FALSE)
 
 summ_103_hr <-house103 %>%
@@ -296,7 +296,7 @@ summ_103_hr <-house103 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_103_hr, file = "summ_103_hr.csv",
+write.csv(summ_103_hr, file = "summary_stats/summ_103_hr.csv",
           row.names = FALSE)
 
 summ_103_hasc <- hasc103 %>%
@@ -305,7 +305,7 @@ summ_103_hasc <- hasc103 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_103_hasc, file = "summ_103_hasc.csv",
+write.csv(summ_103_hasc, file = "summary_stats/summ_103_hasc.csv",
           row.names = FALSE)
 
 summ_103_sen <-sen103 %>%
@@ -314,7 +314,7 @@ summ_103_sen <-sen103 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_103_sen, file = "summ_103_sen.csv",
+write.csv(summ_103_sen, file = "summary_stats/summ_103_sen.csv",
           row.names = FALSE)
 
 summ_103_sasc <- sasc103 %>%
@@ -323,7 +323,7 @@ summ_103_sasc <- sasc103 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_103_sasc, file = "summ_103_sasc.csv",
+write.csv(summ_103_sasc, file = "summary_stats/summ_103_sasc.csv",
           row.names = FALSE)
 
 summ_104_hr <-house104 %>%
@@ -332,7 +332,7 @@ summ_104_hr <-house104 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_104_hr, file = "summ_104_hr.csv",
+write.csv(summ_104_hr, file = "summary_stats/summ_104_hr.csv",
           row.names = FALSE)
 
 summ_104_hasc <- hasc104 %>%
@@ -341,7 +341,7 @@ summ_104_hasc <- hasc104 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_104_hasc, file = "summ_104_hasc.csv",
+write.csv(summ_104_hasc, file = "summary_stats/summ_104_hasc.csv",
           row.names = FALSE)
 
 summ_104_sen <-sen104 %>%
@@ -350,7 +350,7 @@ summ_104_sen <-sen104 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_104_sen, file = "summ_104_sen.csv",
+write.csv(summ_104_sen, file = "summary_stats/summ_104_sen.csv",
           row.names = FALSE)
 
 summ_104_sasc <- sasc104 %>%
@@ -359,7 +359,7 @@ summ_104_sasc <- sasc104 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_104_sasc, file = "summ_104_sasc.csv",
+write.csv(summ_104_sasc, file = "summary_stats/summ_104_sasc.csv",
           row.names = FALSE)
 
 summ_105_hr <-house105 %>%
@@ -368,7 +368,7 @@ summ_105_hr <-house105 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_105_hr, file = "summ_105_hr.csv",
+write.csv(summ_105_hr, file = "summary_stats/summ_105_hr.csv",
           row.names = FALSE)
 
 summ_105_hasc <- hasc105 %>%
@@ -377,7 +377,7 @@ summ_105_hasc <- hasc105 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_105_hasc, file = "summ_105_hasc.csv",
+write.csv(summ_105_hasc, file = "summary_stats/summ_105_hasc.csv",
           row.names = FALSE)
 
 summ_105_sen <-sen105 %>%
@@ -386,7 +386,7 @@ summ_105_sen <-sen105 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_105_sen, file = "summ_105_sen.csv",
+write.csv(summ_105_sen, file = "summary_stats/summ_105_sen.csv",
           row.names = FALSE)
 
 summ_105_sasc <- sasc105 %>%
@@ -395,7 +395,7 @@ summ_105_sasc <- sasc105 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_105_sasc, file = "summ_105_sasc.csv",
+write.csv(summ_105_sasc, file = "summary_stats/summ_105_sasc.csv",
           row.names = FALSE)
 
 summ_106_hr <-house106 %>%
@@ -404,7 +404,7 @@ summ_106_hr <-house106 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_106_hr, file = "summ_106_hr.csv",
+write.csv(summ_106_hr, file = "summary_stats/summ_106_hr.csv",
           row.names = FALSE)
 
 summ_106_hasc <- hasc106 %>%
@@ -413,7 +413,7 @@ summ_106_hasc <- hasc106 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_106_hasc, file = "summ_106_hasc.csv",
+write.csv(summ_106_hasc, file = "summary_stats/summ_106_hasc.csv",
           row.names = FALSE)
 
 summ_106_sen <-sen106 %>%
@@ -422,7 +422,7 @@ summ_106_sen <-sen106 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_106_sen, file = "summ_106_sen.csv",
+write.csv(summ_106_sen, file = "summary_stats/summ_106_sen.csv",
           row.names = FALSE)
 
 summ_106_sasc <- sasc106 %>%
@@ -431,7 +431,7 @@ summ_106_sasc <- sasc106 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_106_sasc, file = "summ_106_sasc.csv",
+write.csv(summ_106_sasc, file = "summary_stats/summ_106_sasc.csv",
           row.names = FALSE)
 
 summ_107_hr <-house107 %>%
@@ -440,7 +440,7 @@ summ_107_hr <-house107 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_107_hr, file = "summ_107_hr.csv",
+write.csv(summ_107_hr, file = "summary_stats/summ_107_hr.csv",
           row.names = FALSE)
 
 summ_107_hasc <- hasc107 %>%
@@ -449,7 +449,7 @@ summ_107_hasc <- hasc107 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_107_hasc, file = "summ_107_hasc.csv",
+write.csv(summ_107_hasc, file = "summary_stats/summ_107_hasc.csv",
           row.names = FALSE)
 
 summ_107_sen <-sen107 %>%
@@ -458,7 +458,7 @@ summ_107_sen <-sen107 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_107_sen, file = "summ_107_sen.csv",
+write.csv(summ_107_sen, file = "summary_stats/summ_107_sen.csv",
           row.names = FALSE)
 
 summ_107_sasc <- sasc107 %>%
@@ -467,7 +467,7 @@ summ_107_sasc <- sasc107 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_107_sasc, file = "summ_107_sasc.csv",
+write.csv(summ_107_sasc, file = "summary_stats/summ_107_sasc.csv",
           row.names = FALSE)
 
 summ_108_hr <-house108 %>%
@@ -476,7 +476,7 @@ summ_108_hr <-house108 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_108_hr, file = "summ_108_hr.csv",
+write.csv(summ_108_hr, file = "summary_stats/summ_108_hr.csv",
           row.names = FALSE)
 
 summ_108_hasc <- hasc108 %>%
@@ -485,7 +485,7 @@ summ_108_hasc <- hasc108 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_108_hasc, file = "summ_108_hasc.csv",
+write.csv(summ_108_hasc, file = "summary_stats/summ_108_hasc.csv",
           row.names = FALSE)
 
 summ_108_sen <-sen108 %>%
@@ -494,7 +494,7 @@ summ_108_sen <-sen108 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_108_sen, file = "summ_108_sen.csv",
+write.csv(summ_108_sen, file = "summary_stats/summ_108_sen.csv",
           row.names = FALSE)
 
 summ_108_sasc <- sasc108 %>%
@@ -503,7 +503,7 @@ summ_108_sasc <- sasc108 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_108_sasc, file = "summ_108_sasc.csv",
+write.csv(summ_108_sasc, file = "summary_stats/summ_108_sasc.csv",
           row.names = FALSE)
 
 summ_109_hr <-house109 %>%
@@ -512,7 +512,7 @@ summ_109_hr <-house109 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_109_hr, file = "summ_109_hr.csv",
+write.csv(summ_109_hr, file = "summary_stats/summ_109_hr.csv",
           row.names = FALSE)
 
 summ_109_hasc <- hasc109 %>%
@@ -521,7 +521,7 @@ summ_109_hasc <- hasc109 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_109_hasc, file = "summ_109_hasc.csv",
+write.csv(summ_109_hasc, file = "summary_stats/summ_109_hasc.csv",
           row.names = FALSE)
 
 summ_109_sen <-sen109 %>%
@@ -530,7 +530,7 @@ summ_109_sen <-sen109 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_109_sen, file = "summ_109_sen.csv",
+write.csv(summ_109_sen, file = "summary_stats/summ_109_sen.csv",
           row.names = FALSE)
 
 summ_109_sasc <- sasc109 %>%
@@ -539,7 +539,7 @@ summ_109_sasc <- sasc109 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_109_sasc, file = "summ_109_sasc.csv",
+write.csv(summ_109_sasc, file = "summary_stats/summ_109_sasc.csv",
           row.names = FALSE)
 
 summ_110_hr <-house110 %>%
@@ -548,7 +548,7 @@ summ_110_hr <-house110 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_110_hr, file = "summ_110_hr.csv",
+write.csv(summ_110_hr, file = "summary_stats/summ_110_hr.csv",
           row.names = FALSE)
 
 summ_110_hasc <- hasc110 %>%
@@ -557,7 +557,7 @@ summ_110_hasc <- hasc110 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_110_hasc, file = "summ_110_hasc.csv",
+write.csv(summ_110_hasc, file = "summary_stats/summ_110_hasc.csv",
           row.names = FALSE)
 
 summ_110_sen <-sen110 %>%
@@ -566,7 +566,7 @@ summ_110_sen <-sen110 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_110_sen, file = "summ_110_sen.csv",
+write.csv(summ_110_sen, file = "summary_stats/summ_110_sen.csv",
           row.names = FALSE)
 
 summ_110_sasc <- sasc110 %>%
@@ -575,7 +575,7 @@ summ_110_sasc <- sasc110 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_110_sasc, file = "summ_110_sasc.csv",
+write.csv(summ_110_sasc, file = "summary_stats/summ_110_sasc.csv",
           row.names = FALSE)
 
 summ_111_hr <-house111 %>%
@@ -584,7 +584,7 @@ summ_111_hr <-house111 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_111_hr, file = "summ_111_hr.csv",
+write.csv(summ_111_hr, file = "summary_stats/summ_111_hr.csv",
           row.names = FALSE)
 
 summ_111_hasc <- hasc111 %>%
@@ -593,7 +593,7 @@ summ_111_hasc <- hasc111 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_111_hasc, file = "summ_111_hasc.csv",
+write.csv(summ_111_hasc, file = "summary_stats/summ_111_hasc.csv",
           row.names = FALSE)
 
 summ_111_sen <-sen111 %>%
@@ -602,7 +602,7 @@ summ_111_sen <-sen111 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_111_sen, file = "summ_111_sen.csv",
+write.csv(summ_111_sen, file = "summary_stats/summ_111_sen.csv",
           row.names = FALSE)
 
 summ_111_sasc <- sasc111 %>%
@@ -611,7 +611,7 @@ summ_111_sasc <- sasc111 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_111_sasc, file = "summ_111_sasc.csv",
+write.csv(summ_111_sasc, file = "summary_stats/summ_111_sasc.csv",
           row.names = FALSE)
 
 summ_112_hr <-house112 %>%
@@ -620,7 +620,7 @@ summ_112_hr <-house112 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_112_hr, file = "summ_112_hr.csv",
+write.csv(summ_112_hr, file = "summary_stats/summ_112_hr.csv",
           row.names = FALSE)
 
 summ_112_hasc <- hasc112 %>%
@@ -629,7 +629,7 @@ summ_112_hasc <- hasc112 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_112_hasc, file = "summ_112_hasc.csv",
+write.csv(summ_112_hasc, file = "summary_stats/summ_112_hasc.csv",
           row.names = FALSE)
 
 summ_112_sen <-sen112 %>%
@@ -638,7 +638,7 @@ summ_112_sen <-sen112 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_112_sen, file = "summ_112_sen.csv",
+write.csv(summ_112_sen, file = "summary_stats/summ_112_sen.csv",
           row.names = FALSE)
 
 summ_112_sasc <- sasc112 %>%
@@ -647,7 +647,7 @@ summ_112_sasc <- sasc112 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_112_sasc, file = "summ_112_sasc.csv",
+write.csv(summ_112_sasc, file = "summary_stats/summ_112_sasc.csv",
           row.names = FALSE)
 
 summ_113_hr <-house113 %>%
@@ -656,7 +656,7 @@ summ_113_hr <-house113 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_113_hr, file = "summ_113_hr.csv",
+write.csv(summ_113_hr, file = "summary_stats/summ_113_hr.csv",
           row.names = FALSE)
 
 summ_113_hasc <- hasc113 %>%
@@ -665,7 +665,7 @@ summ_113_hasc <- hasc113 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_113_hasc, file = "summ_113_hasc.csv",
+write.csv(summ_113_hasc, file = "summary_stats/summ_113_hasc.csv",
           row.names = FALSE)
 
 summ_113_sen <-sen113 %>%
@@ -674,7 +674,7 @@ summ_113_sen <-sen113 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_113_sen, file = "summ_113_sen.csv",
+write.csv(summ_113_sen, file = "summary_stats/summ_113_sen.csv",
           row.names = FALSE)
 
 summ_113_sasc <- sasc113 %>%
@@ -683,7 +683,7 @@ summ_113_sasc <- sasc113 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_113_sasc, file = "summ_113_sasc.csv",
+write.csv(summ_113_sasc, file = "summary_stats/summ_113_sasc.csv",
           row.names = FALSE)
 
 summ_114_hr <-house114 %>%
@@ -692,7 +692,7 @@ summ_114_hr <-house114 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_114_hr, file = "summ_114_hr.csv",
+write.csv(summ_114_hr, file = "summary_stats/summ_114_hr.csv",
           row.names = FALSE)
 
 summ_114_hasc <- hasc114 %>%
@@ -701,7 +701,7 @@ summ_114_hasc <- hasc114 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_114_hasc, file = "summ_114_hasc.csv",
+write.csv(summ_114_hasc, file = "summary_stats/summ_114_hasc.csv",
           row.names = FALSE)
 
 summ_114_sen <-sen114 %>%
@@ -710,7 +710,7 @@ summ_114_sen <-sen114 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_114_sen, file = "summ_114_sen.csv",
+write.csv(summ_114_sen, file = "summary_stats/summ_114_sen.csv",
           row.names = FALSE)
 
 summ_114_sasc <- sasc114 %>%
@@ -719,7 +719,7 @@ summ_114_sasc <- sasc114 %>%
             median = median(nominate_dim1),
             mean = mean(nominate_dim1),
             max = max(nominate_dim1))
-write.csv(summ_114_sasc, file = "summ_114_sasc.csv",
+write.csv(summ_114_sasc, file = "summary_stats/summ_114_sasc.csv",
           row.names = FALSE)
 
 
