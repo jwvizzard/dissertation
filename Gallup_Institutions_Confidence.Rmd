@@ -1,0 +1,50 @@
+------------------
+Title: Gallup Confidence in Institutions Graphic
+Author: James Vizzard
+Project: Dissertation
+Date: 20260611
+Output: Graphics
+------------------
+
+# Load required libraries
+```{r, echo = FALSE}
+library(tidyverse)
+library(dplyr)
+library(readr)
+library(haven)
+library(here)           # sets directory path
+library(ggplot2)        # plotting functionality including attr for labels
+library(knitr)          # enables running code from RMD file
+library(here)           # could not get this to work with Proton Drive
+library(RColorBrewer)   # RColorBrewer provides color palettes for plots
+```
+
+# Set home folder
+```{r, echo = FALSE}
+#here() starts at /Users/james-macbook/Data/dissertation
+here::i_am("Gallup_Institutions_Confidence.Rmd")
+```
+
+# Load data 
+```{r, echo = FALSE}
+
+milcon <- read_csv("Gallup_Confidence_Military_1991-2016.csv")
+``` 
+
+
+# Create plot
+```{r, echo = FALSE}
+milconf <- ggplot(data = milcon,
+            mapping = aes(x = Time, y = Aggregate))
+milconf + geom_line() +
+  labs(x = "Year", y = "Confidence",
+     title = "High Confidence in the Military",
+     subtitle = "1991-2016",
+     caption = "Source: Gallup")
+ggsave(filename = "plots/lineplot_milconf.png")
+ggsave(filename = "plots/lineplot_milconf.pdf")
+
+# scale from 0-100 to show overall high level
+# convert decimals to % in the labels
+# insert ticks for every year
+```

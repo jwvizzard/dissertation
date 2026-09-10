@@ -29,7 +29,7 @@ library(RColorBrewer)   # RColorBrewer provides color palettes for plots
 
 # Set home folder
 ```{r, echo = FALSE}
-#here() starts at /Users/james-macbook/Data/Dissertation
+#here() starts at /Users/james-macbook/Data/dissertation
 here::i_am("Committees_Nominate.Rmd")
 ```
 
