@@ -1,0 +1,131 @@
+---
+title: "Merge Multiple CSV"
+output: github_document
+---
+
+## This code will merge CSV files with NOMINATE data for all Congresses from the 102nd to the 114th into a single data frame and then export it as a single CSV file.
+
+``` {r}
+
+library(dplyr)
+library(readr)
+library(here)  
+
+#here() starts at /Users/james-macbook/Data/dissertation/NOMINATE_Raw
+here::i_am("Build_Frame_102-114.Rmd")
+
+#import and merge all three CSV files into one data frame
+df <- list.files(path='/Users/james-macbook/Data/dissertation/NOMINATE_Raw/') %>% 
+  lapply(read_csv) %>% 
+  bind_rows 
+
+#view resulting data frame
+df
+
+#write the data frame back to the folder as a CSV file.
+write.csv(df, '/Users/james-macbook/Data/dissertation/NOMINATE_Raw/NOMINATE_complete.csv', row.names=FALSE)
+
+```
+
+
+```{r}
+#Clean up the CSV file
+
+library(dplyr)
+library(readr)
+library(here)  
+
+#here() starts at /Users/james-macbook/Data/dissertation/NOMINATE_Raw
+here::i_am("Build_Frame_102-114.Rmd")
+
+#Load CSV
+NOMINATE_complete <- read_csv("NOMINATE_complete.csv")
+
+#remove rows where column 'chamber' is equal to "President"
+NOMINATE_congress <- subset(NOMINATE_complete, chamber != "President") 
+
+#write the data frame back to the folder as a CSV file.
+write.csv(NOMINATE_congress, '/Users/james-macbook/Data/dissertation/NOMINATE_Raw/NOMINATE_congress.csv', row.names=FALSE)
+
+
+```
+
+```{r, echo = FALSE}
+#create the polarization graphics to match the new VOTEVIEW.com as of May 2026
+
+#load libraries
+library(tidyverse)
+library(dplyr)
+library(readr)
+library(haven)
+library(ggplot2)        # plotting functionality including attr for labels
+library(knitr)          # enables running code from RMD file
+library(here)           # could not get this to work with Proton Drive
+library(RColorBrewer)   # RColorBrewer provides color palettes for plots
+
+# set labels
+attr(NOMINATE_congress$congress, "label") <- "Congress"
+attr(NOMINATE_congress$chamber, "label") <- "Chamber"
+attr(NOMINATE_congress$icpsr, "label") <- "ICPSR Identifier"
+attr(NOMINATE_congress$state_icpsr, "label") <- "ICPSR State Identifier"
+attr(NOMINATE_congress$district_code, "label") <- "District Code"
+attr(NOMINATE_congress$state_abbrev, "label") <- "State"
+attr(NOMINATE_congress$party_code, "label") <- "Party Code"
+attr(NOMINATE_congress$occupancy, "label") <- "ICPSR Occupancy Code"
+attr(NOMINATE_congress$last_means, "label") <- "Means of Attaining Office"
+attr(NOMINATE_congress$bioname, "label") <- "Member Name"
+attr(NOMINATE_congress$bioguide_id, "label") <- "Biographical Directory of Congress ID"
+attr(NOMINATE_congress$born, "label") <- "Date of Birth"
+attr(NOMINATE_congress$died, "label") <- "Date of Death"
+attr(NOMINATE_congress$nominate_dim1, "label") <- "NOMINATE Dim1"
+attr(NOMINATE_congress$nominate_dim2, "label") <- "NOMINATE Dim2"
+attr(NOMINATE_congress$nominate_log_likelihood, "label") <- "Log-Likelihood of the NOMINATE Estimate"
+attr(NOMINATE_congress$nominate_geo_mean_probability, "label") <- "Geometric Mean Probability" 
+attr(NOMINATE_congress$nominate_number_of_votes, "label") <- "Votes Cast by Member in Given Congress"
+attr(NOMINATE_congress$nominate_number_of_errors, "label") <- "Votes Cast by Member in Given Congress"
+attr(NOMINATE_congress$nokken_poole_dim1, "label") <- "Nokken-Poole First Dimension Estimate"
+attr(NOMINATE_congress$nokken_poole_dim2, "label") <- "Nokken-Poole Second Dimension Estimate"
+
+south <- c(40:49,51,53)
+polar_dat <- NOMINATE_congress |>
+    mutate(
+      year = 2*(congress-1) + 1789,
+    ) |>
+    summarize(
+      .by = c(chamber, congress, year),
+      party.mean.diff.d1 = mean(nominate_dim1[party_code==200],na.rm=T) - 
+                           mean(nominate_dim1[party_code==100],na.rm=T),
+      prop.moderate.d1 = mean(abs(nominate_dim1)<0.25,na.rm=T),
+      prop.moderate.dem.d1 = mean(abs(nominate_dim1[party_code==100])<0.25,na.rm=T),
+      prop.moderate.rep.d1 = mean(abs(nominate_dim1[party_code==200])<0.25,na.rm=T),
+      overlap = (sum(nominate_dim1[party_code==200] <
+                       max(nominate_dim1[party_code==100],na.rm=T),na.rm=T)  +
+                 sum(nominate_dim1[party_code==100] >
+                       min(nominate_dim1[party_code==200],na.rm=T),na.rm=T))/
+                 (sum(!is.na(nominate_dim1[party_code==100]))+
+                  sum(!is.na(nominate_dim1[party_code==200]))),
+      chamber.mean.d1 = mean(nominate_dim1,na.rm=T),
+      chamber.mean.d2 = mean(nominate_dim2,na.rm=T),
+      dem.mean.d1 = mean(nominate_dim1[party_code==100],na.rm=T),
+      dem.mean.d2 = mean(nominate_dim2[party_code==100],na.rm=T),
+      rep.mean.d1 = mean(nominate_dim1[party_code==200],na.rm=T),
+      rep.mean.d2 = mean(nominate_dim2[party_code==200],na.rm=T),
+      north.rep.mean.d1 = mean(nominate_dim1[party_code==200 & 
+                                             !(state_icpsr %in% south)],na.rm=T),    
+      north.rep.mean.d2 = mean(nominate_dim2[party_code==200 & 
+                                             !(state_icpsr %in% south)],na.rm=T),    
+      south.rep.mean.d1 = mean(nominate_dim1[party_code==200 & 
+                                              (state_icpsr %in% south)],na.rm=T),    
+      south.rep.mean.d2 = mean(nominate_dim2[party_code==200 & 
+                                             (state_icpsr %in% south)],na.rm=T),    
+      north.dem.mean.d1 = mean(nominate_dim1[party_code==100 & 
+                                              !(state_icpsr %in% south)],na.rm=T),    
+      north.dem.mean.d2 = mean(nominate_dim2[party_code==100 & 
+                                              !(state_icpsr %in% south)],na.rm=T),    
+      south.dem.mean.d1 = mean(nominate_dim1[party_code==100 & 
+                                              (state_icpsr %in% south)],na.rm=T),    
+      south.dem.mean.d2 = mean(nominate_dim2[party_code==100 & 
+                                              (state_icpsr %in% south)],na.rm=T),    
+    ) 
+
+```
