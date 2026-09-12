@@ -1,42 +1,98 @@
 ---
-title: "Armed Services Committees NOMINATE Visualization"
+title: "Targets of Opportunism Graphics"
 output: github_document
+author: James Vizzard
+project: Dissertation
 ---
 
-## Armed Services Committee Rosters
-# The membership for the House and Senate Armed Services Committees (including the House Committee on National Security in the 104th and 105th Congresses) was derived from the committees' reports of activities.
-# Committees published these reports on varying schedules, sometimes long after the Congress to which they referred. The reports were unavailable for some Congresses, and I assembled membership information from other sources, including C-SPAN hearings, which often list the committee membership. The C-SPAN website lists the membership for the committees by Congress but without amplifying data such as information on members who left or joined the committee during the Congress.
-# These lists include ALL members of the committee during that Congress, including those who left the committee or joined late. There are a few exceptions, for instance in the 102nd Congress, I included Mary Bono but not Sonny Bono because he died at the beginning of the session and played no part in the hearings covered by this project.
-# There are several issues with NOMINATE scores, but they are the most readily available and consistent measure of ideology.
-# 1. NOMINATE scores are consistent for a single member across their membership in a legislative body, so they do not capture ideological evolution. Therefore, these measures may under- or overstate a member's ideological extremism at any given point. 
-# 2. The NOMINATE dimensions do not directly address military and national security issues. It is possible that there are outliers who score extremely conservative on the economic or racial scale by are liberal on national security issues. However, that seems less likely during the period of this study--for instance Democrats like Joe Lieberman who were hawkish and conservative on national security were also among the most conservative members of their party on other issues. 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-## Code
-
-# Load required libraries
+# Load Libraries
 
 ```{r, echo = FALSE}
-library(tidyverse)
 library(dplyr)
-library(readr)
-library(haven)
-library(here)           # sets directory path
 library(ggplot2)        # plotting functionality including attr for labels
+library(ggpmisc)
+library(ggrepel)        # set labels in plots
+library(haven)
+library(hrbrthemes)
 library(knitr)          # enables running code from RMD file
-library(here)           # could not get this to work with Proton Drive
 library(RColorBrewer)   # RColorBrewer provides color palettes for plots
+library(readr)
+library(scales)
+library(tidyverse)
+library(viridis)
 ```
 
-# Set home folder
+# Summary Stats
+
+```{r /4StarsNoms/4StarsNoms_Data.csv}
+noms <- read_csv("4StarsNoms/4StarsNoms_Data.csv")
+summary(noms)
+```
+
+# Plots
+
+## Gallup Confidence in Institutions
+
 ```{r, echo = FALSE}
-#here() starts at /Users/james-macbook/Data/dissertation
-here::i_am("Committees_Nominate.Rmd")
+
+
+# Load Data
+milcon <- read_csv("gallup_confidence_military_agg.csv")
+
+# Plot
+milcon %>%
+  ggplot(aes(x=year, y=percentage, group=confidence, color=confidence)) +
+    geom_line() +
+    scale_y_continuous(labels = scales::percent, breaks = seq(.10, 1, by = .10)) +
+    scale_x_date(breaks = c(as.Date("1993-01-20"),          # x labels = pres admins
+                           as.Date("2001-01-20"),
+                           as.Date("2009-01-20")),
+                  date_labels = "%Y") +
+    scale_color_manual(values = c("High" = "blue",          # set color of line graphs
+                                "Low" = "red")) +
+    theme(panel.background = element_rect(fill = "white")) +# Set background color
+    theme(panel.border = element_rect(fill = "transparent", # Needed to add the border
+                                    color = 1,              # Color of the border
+                                    size = 1)) +            # Border width
+    theme(legend.position="none") +                         # Removes legend
+    geom_vline(xintercept = as.Date("1990-08-02"),          # Mark key events
+              linetype = 2, color = 2, linewidth = 0.5) +
+    geom_vline(xintercept = as.Date("2001-09-11"),
+              linetype = 2, color = 2, linewidth = 0.5) +
+    geom_vline(xintercept = as.Date("2014-06-10"),
+              linetype = 2, color = 2, linewidth = 0.5) +
+    labs(x = "Year", y = "Confidence",                      # Labels
+         title = "Public Confidence in Military",
+         subtitle = "1990-2016",
+         caption = "Source: Gallup") +
+    annotate("label", x = as.Date("1991-06-02"), y = 1, label = "Gulf War") +
+    annotate("label", x = as.Date("2001-09-11"), y = 1, label = "9/11") +
+    annotate("label", x = as.Date("2014-06-10"), y = 1, label = "ISIS") +
+    annotate("label", x = as.Date("2015-10-01"), y = 0.8, label = "High") +
+    annotate("label", x = as.Date("2015-10-01"), y = 0.2, label = "Low") 
+ggsave(filename = "plots/lineplot_milconf.png")             # Save graphics
+ggsave(filename = "plots/lineplot_milconf.pdf")
+
 ```
 
-# Load data and create subsets by chamber by congress
+## Committees
+### Armed Services Committee Rosters
+#### The membership for the House and Senate Armed Services Committees (including the House Committee on National Security in the 104th and 105th Congresses) was derived from the committees' reports of activities.
+#### Committees published these reports on varying schedules, sometimes long after the Congress to which they referred. The reports were unavailable for some Congresses, and I assembled membership information from other sources, including C-SPAN hearings, which often list the committee membership. The C-SPAN website lists the membership for the committees by Congress but without amplifying data such as information on members who left or joined the committee during the Congress.
+#### These lists include ALL members of the committee during that Congress, including those who left the committee or joined late. There are a few exceptions, for instance in the 102nd Congress, I included Mary Bono but not Sonny Bono because he died at the beginning of the session and played no part in the hearings covered by this project.
+#### There are several issues with NOMINATE scores, but they are the most readily available and consistent measure of ideology.
+#### 1. NOMINATE scores are consistent for a single member across their membership in a legislative body, so they do not capture ideological evolution. Therefore, these measures may under- or overstate a member's ideological extremism at any given point. 
+#### 2. The NOMINATE dimensions do not directly address military and national security issues. It is possible that there are outliers who score extremely conservative on the economic or racial scale by are liberal on national security issues. However, that seems less likely during the period of this study--for instance Democrats like Joe Lieberman who were hawkish and conservative on national security were also among the most conservative members of their party on other issues. 
+
+#### Load data and create subsets by chamber by congress
 ```{r, echo = FALSE}
 # using the working csv files constructed from the base VoteView data with the addition of armed services committee membership, create data frames for each chamber and armed services committee in each congress.
 
+##### House of Representatives
 house <- read_csv("NOMINATE_House_202506_WORKING.csv")
 
 # set labels
@@ -141,9 +197,8 @@ house114 <- subset( x = house,
 hasc114 <- subset( x = house114,
                    subset = hasc == 1
                    )
-```
 
-```{r}
+##### Senate
 senate <- read_csv("NOMINATE_Senate_202506_WORKING.csv")
 
 # set labels
@@ -250,7 +305,7 @@ sasc114 <- subset( x = sen114,
                    )
 ```
 
-Calculate summary statistics for each house and each oversight committee.
+#### Calculate summary statistics for each house and each oversight committee.
 
 ```{r echo = FALSE}
 
@@ -721,18 +776,9 @@ summ_114_sasc <- sasc114 %>%
             max = max(nominate_dim1))
 write.csv(summ_114_sasc, file = "summary_stats/summ_114_sasc.csv",
           row.names = FALSE)
-
-
-
 ```
 
-
-
-
-
-
-
-## Plots of committee and chamber NOMINATE scores
+#### Plots of committee and chamber NOMINATE scores
 ```{r fig.width=6, fig.height=3.75, echo = FALSE}
 
 # plots of HASC and the House of Representatives in 102nd Congress
@@ -2051,13 +2097,3 @@ gg
 ```
 
 
-
-
-
-
-
-
-
-
-
-# Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
